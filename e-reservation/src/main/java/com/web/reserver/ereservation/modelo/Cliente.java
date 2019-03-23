@@ -3,6 +3,16 @@
  */
 package com.web.reserver.ereservation.modelo;
 
+import java.util.Set;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+
 import lombok.Data;
 
 /**
@@ -12,11 +22,22 @@ import lombok.Data;
  *
  */
 @Data
+@Entity
+@Table(name = "cliente")
 public class Cliente {
-
-	int idCliente;
-	String nombreCliente;
-	String apellidoCliente;
+	@Id
+	@GeneratedValue(generator = "system-uuid")
+	@GenericGenerator(name = "system-uuid", strategy = "uuid2")
+	private String idCli;
+	private String identificacionCli;
+	private String nombreCli;
+	private String apellidoCli;
+	private String direccionCli;
+	private String telefonoCli;
+	private String emailCli;
+	//Un cliente puede tener muchas reservas. El mapeo de clases es bi direccional.
+	@OneToMany(mappedBy = "cliente")
+	private Set<Reserva> reservas;
 
 	public Cliente() {}
 }
