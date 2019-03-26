@@ -1,5 +1,7 @@
 package com.web.reserver.ereservation.negocio.services;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -77,5 +79,16 @@ public class ClienteService {
 
 	public Cliente findByIdentification(String identificacionCli) {
 		return this.clienteRepository.findByIdentification(identificacionCli);
+	}
+	
+	/**
+	 * Metódo que busca  todos los clientes.
+	 * 
+	 * @return List<cliente>
+	 * @author sumel
+	 * 
+	 */	
+	public List<Cliente> findAll(){
+		return this.clienteRepository.findAll();
 	}
 }
